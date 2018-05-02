@@ -1,0 +1,27 @@
+language: python
+
+python:
+  - "2.7"
+  - "3.5"
+  - "3.5-dev"
+  - "3.6"
+  - "3.6-dev"
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - python run_tests.py
+
+after_success:
+  if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then coveralls; fi
+
+deploy:
+  provider: pypi
+  user: lmg-buildbot
+  password:
+    secure: pFO69jrZM1bCUDo83t5fotZkvcQaMnEUjKajqiMsoQCR8DW3FNru5RdpAienaSBmGsHEN6JgaxF1jrAAl2XS0wfDJe/GwK1sGx7ej3xZC9rPkFOvkuKREtQKRJBn5W3O0o0VcaZSvfGwYLmBxjZBPcAyk4TBupKMoyuNSxiO4fkQpuiN3Ig2s1lSkBSXCD9SXQjEwSEOxrCPsNwLg3rtjA38idQQ/c3cQhAw14xHIwjS2cwfIBZNWUEW84591Qoh+5XZ8g0VH+3J4cW7hEeYPpVu+4r6so2AmtZBBwRr+Bc2U1PeyvaVyxI5XD5ORFGugHsDeZEGyvxzRzagQXWepif0pJmHSteJa5uzV+5psLEC3Us5Z+l2LaxILbcb2ZtSD60qgDrdqsBfQi5aqyNF5drAa5EWHKCbPLjeqRN6noxI93wAAzpY/t9FpNsJjFoPF/4qQL/q1txcpdkWkh76UaHxqjN04KdRCsNzQErLeBnXpAJo+fG3D0NYOHVP2FFydbYeAVYbwk0Cex6t03J39BIJ1GYqjw2o75UZC7LbqQ4S8Y3IKjsBXUTUGeUAnuY5rn7o1/PHB9v/Aj3Tbg2e3cS9nciW/mnVbNZ6ReoqaIYmcYzNgZ4gAv3WyIKWchRn2AMjJ7bSrR5CKvAQW7B1A3PCcidn+Qq1Ezf6LCD79qw=
+  on:
+    branch: master
+    tags: true
+    condition: $TRAVIS_PYTHON_VERSION == 3.6
