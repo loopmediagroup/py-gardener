@@ -21,7 +21,7 @@ setup(
     description='Basic Tests for python project to enforce best practices.',
     long_description=__doc__,
     packages=[
-        'lib'
+        'py_gardener'
     ],
     zip_safe=False,
     platforms='any',
