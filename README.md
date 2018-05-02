@@ -1,6 +1,6 @@
-[![Build Status](https://img.shields.io/travis/LoopMediaGroup/py-gardener/master.svg)](https://travis-ci.org/LoopMediaGroup/py-gardener)
-[![Coverage Status](https://coveralls.io/repos/github/LoopMediaGroup/py-gardener/badge.svg?branch=master)](https://coveralls.io/github/LoopMediaGroup/py-gardener?branch=master)
-[![Dependencies](https://pyup.io/repos/github/LoopMediaGroup/py-gardener/shield.svg?t=1518818417448)](https://pyup.io)
+[![Build Status](https://img.shields.io/travis/loopmediagroup/py-gardener/master.svg)](https://travis-ci.org/loopmediagroup/py-gardener)
+[![Coverage Status](https://coveralls.io/repos/github/loopmediagroup/py-gardener/badge.svg?branch=master)](https://coveralls.io/github/loopmediagroup/py-gardener?branch=master)
+[![Dependencies](https://pyup.io/repos/github/loopmediagroup/py-gardener/shield.svg?t=1518818417448)](https://pyup.io)
 
 # Py-Gardener
 
