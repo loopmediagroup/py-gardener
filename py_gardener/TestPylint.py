@@ -4,7 +4,7 @@ import multiprocessing
 from multiprocessing.pool import ThreadPool
 import time
 from pylint import epylint
-from lib.InternalTestBase import InternalTestBase
+from py_gardener.InternalTestBase import InternalTestBase
 
 
 class TestPylint(InternalTestBase):

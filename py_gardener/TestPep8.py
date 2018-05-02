@@ -1,5 +1,5 @@
 import pycodestyle
-from lib.InternalTestBase import InternalTestBase
+from py_gardener.InternalTestBase import InternalTestBase
 
 
 class TestPep8(InternalTestBase):

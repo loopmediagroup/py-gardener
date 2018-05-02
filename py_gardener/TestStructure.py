@@ -1,6 +1,6 @@
 from os import path, walk, listdir
 import ast
-from lib.InternalTestBase import InternalTestBase
+from py_gardener.InternalTestBase import InternalTestBase
 
 
 class TestStructure(InternalTestBase):

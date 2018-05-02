@@ -1,5 +1,5 @@
 import re
-from lib.InternalTestBase import InternalTestBase
+from py_gardener.InternalTestBase import InternalTestBase
 
 
 class TestIncorrectBoolConditional(InternalTestBase):

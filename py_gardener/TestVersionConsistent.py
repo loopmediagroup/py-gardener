@@ -1,7 +1,7 @@
 import re
 import os
 import subprocess
-from lib.InternalTestBase import InternalTestBase
+from py_gardener.InternalTestBase import InternalTestBase
 
 
 class TestVersionConsistent(InternalTestBase):
