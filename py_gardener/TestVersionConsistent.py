@@ -10,6 +10,10 @@ class TestVersionConsistent(InternalTestBase):
     def test_version_consistent(self):
         v1 = subprocess.check_output(
             'git describe --tags --abbrev=0'.split()).strip().decode("utf-8")
-        with open(os.path.join(self.ROOT_DIR, "setup.py")) as f:
-            v2 = re.search("version='([0-9.]+)',", f.read()).groups()[0]
-        assert list(map(int, v1.split("."))) <= list(map(int, v2.split(".")))
+        setup_path = os.path.join(self.ROOT_DIR, "setup.py")
+        if os.path.isfile(setup_path):
+            with open(setup_path) as f:
+                v2 = re.search("version='([0-9.]+)',", f.read()).groups()[0]
+            assert (
+                list(map(int, v1.split("."))) <= list(map(int, v2.split(".")))
+            )
