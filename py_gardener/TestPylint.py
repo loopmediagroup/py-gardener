@@ -42,17 +42,17 @@ class TestPylint(InternalTestBase):
                     if re.match(r"^\s[-]+$", log):
                         continue
                     if re.match(
-                            r"^\sYour code has been rated at \d+\.\d+/10 "
-                            r"\(previous run: \d+\.\d+/10, [+\-]\d+\.\d+\)$",
-                            log
+                        r"^\sYour code has been rated at \d+\.\d+/10 "
+                        r"\(previous run: \d+\.\d+/10, [+\-]\d+\.\d+\)$",
+                        log
                     ):
                         continue
                     if re.match(r"^\s*$", log):
                         continue
                     result.append(log.strip())
             if not re.match(
-                    r"^Using config file [/A-Za-z0-9\-_]+?\.pylintrc\n$",
-                    stderr
+                r"^Using config file [/A-Za-z0-9\-_]+?\.pylintrc\n$",
+                stderr
             ):
                 result.append(stderr)
         pool.close()
