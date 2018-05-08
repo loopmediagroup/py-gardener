@@ -10,26 +10,29 @@ from py_gardener.InternalTestBase import InternalTestBase
 class TestPylint(InternalTestBase):
     """ Test that we conform to Pylint. """
 
-    suppress_for_test_files = [
-        "E1101",  # no-member (Model creation)
-        "W0221",  # arguments-differ (class setup inheritance)
-        "W0212"  # protected-access  (e.g. private methods)
-    ]
-
     def test_pylint(self):
         pool = ThreadPool(multiprocessing.cpu_count())
+        files = []
+        for file_ in self.list_project_files():
+            # find best pylintrc
+            rc_path = os.path.abspath(file_)
+            while not os.path.isfile(os.path.join(rc_path, '.pylintrc')):
+                assert rc_path != self.ROOT_DIR
+                rc_path = os.path.abspath(rc_path + "/..")
+            files.append([file_, rc_path])
+
         processes = [pool.apply_async(
             lambda f: epylint.py_run('%s --rcfile=%s' % (
-                f,
-                os.path.join(self.ROOT_DIR, ".pylintrc")
+                f[0],
+                os.path.join(f[1], ".pylintrc")
             ), return_std=True),
-            [file_]
-        ) for file_ in self.list_project_files()]
+            [[file_path, rc_file_path]]
+        ) for file_path, rc_file_path in files]
 
         while not all(p.ready() for p in processes):
             time.sleep(0.2)
 
-        logs = []
+        result = []
         for process in processes:
             stdout, stderr = map(lambda e: e.getvalue(), process.get())
             if "Your code has been rated at 10.00/10" not in stdout:
@@ -39,39 +42,20 @@ class TestPylint(InternalTestBase):
                     if re.match(r"^\s[-]+$", log):
                         continue
                     if re.match(
-                        r"^\sYour code has been rated at \d+\.\d+/10 "
-                        r"\(previous run: \d+\.\d+/10, [+\-]\d+\.\d+\)$",
-                        log
+                            r"^\sYour code has been rated at \d+\.\d+/10 "
+                            r"\(previous run: \d+\.\d+/10, [+\-]\d+\.\d+\)$",
+                            log
                     ):
                         continue
                     if re.match(r"^\s*$", log):
                         continue
-                    logs.append(log.strip())
+                    result.append(log.strip())
             if not re.match(
-                r"^Using config file [/A-Za-z0-9\-_]+?\.pylintrc\n$",
-                stderr
+                    r"^Using config file [/A-Za-z0-9\-_]+?\.pylintrc\n$",
+                    stderr
             ):
-                logs.append(stderr)
+                result.append(stderr)
         pool.close()
-
-        result = []
-        if len(logs) > 0:
-            for log in logs:
-                m = re.match(
-                    r"^([/a-zA-Z0-9_.\-]+):(\d+): (error|warning) "
-                    r"\(([A-Z]\d{4}), ([a-z\-]+), ",
-                    log
-                )
-                if m:
-                    groups = m.groups()
-                    prefix = os.path.commonprefix([self.ROOT_DIR, groups[0]])
-                    relpath = os.path.relpath(groups[0], prefix)
-                    if (
-                        relpath.startswith("tests/") and
-                        groups[3] in self.suppress_for_test_files
-                    ):
-                        continue
-                result.append(log)
 
         if len(result) > 0:
             for log in result:
