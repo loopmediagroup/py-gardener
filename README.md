@@ -52,14 +52,14 @@ Test asserts don't check 'in (True, False)' (false positives).
 Use `isinstance(val, bool)` instead
 
 Incorrect:
-```
-if val in (True, False):
+```python
+if value in (True, False):
     ...
 ```
 
 Correct:
-```
-if isinstance(val, bool):
+```python
+if isinstance(value, bool):
     ...
 ```
 
@@ -69,13 +69,13 @@ if isinstance(val, bool):
 Test that lines do not end with backslash - use parenthesis instead
 
 Incorrect:
-```
+```python
 assert 'key' in values or \
     condition is True
 ```
 
 Correct:
-```
+```python
 assert (
     'key' in values or
     condition is True
