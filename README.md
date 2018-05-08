@@ -143,7 +143,7 @@ Example:
 
 ##### Test Init Files Exist
 
-Check that each test folder has an init file.
+Check that each test sub folder has an init file.
 
 #### Test Version Consistent
 
