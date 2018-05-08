@@ -47,21 +47,21 @@ class TestGardener(StaticTestBase):
 
 #### Test Incorrect Bool Conditional
 
-Test asserts don't check 'in (True, False)' (false positives).
+Test asserts don't check `val in (True, False)`. This can result in false positives when `val == 1 or val == 0`.
 
 Use `isinstance(val, bool)` instead
 
 Incorrect:
-```python
-if value in (True, False):
-    ...
-```
+
+    >>> 0 in (True, False)
+    True
+    >>> 1 in (True, False)
+    True
 
 Correct:
-```python
-if isinstance(value, bool):
-    ...
-```
+
+    >>> isinstance(0, bool)
+    False
 
 
 #### Test Line Endings
@@ -143,7 +143,7 @@ Example:
 
 ##### Test Init Files Exist
 
-Check that each test sub folder has an init file.
+Check that all sub folders in $TEST_DIR have an `__init__.py` file.
 
 #### Test Version Consistent
 
