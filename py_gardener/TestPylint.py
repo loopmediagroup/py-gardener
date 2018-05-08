@@ -14,7 +14,6 @@ class TestPylint(InternalTestBase):
         pool = ThreadPool(multiprocessing.cpu_count())
         files = []
         for file_ in self.list_project_files():
-            # find best pylintrc
             rc_path = os.path.abspath(file_)
             while not os.path.isfile(os.path.join(rc_path, '.pylintrc')):
                 assert rc_path != self.ROOT_DIR
