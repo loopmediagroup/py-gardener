@@ -16,7 +16,7 @@ class TestPylint(InternalTestBase):
         for file_ in self.list_project_files():
             rc_path = os.path.abspath(file_)
             while not os.path.isfile(os.path.join(rc_path, '.pylintrc')):
-                assert rc_path != self.ROOT_DIR
+                assert rc_path != self.ROOT_DIR and rc_path != os.path.sep
                 rc_path = os.path.abspath(rc_path + "/..")
             files.append([file_, rc_path])
 
