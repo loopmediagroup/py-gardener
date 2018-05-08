@@ -111,7 +111,16 @@ Common errors to ignore:
 
 ##### Test Class Names Match
 
-Test that test class names are correct.
+Test that test class names are correct. (Test class name must match file name)
+
+For example:
+
+`TestExample.py`
+```python
+import unittest
+class TestExample(unittest.TestCase):
+    pass
+```
 
 ##### Test Related Lib File Exists
 
@@ -119,12 +128,10 @@ Check test files have corresponding lib file if folder exists.
 
 ##### Test Init Files Exist
 
-Check that each test folder has an init file
+Check that each test folder has an init file.
 
 #### Test Version Consistent
 
 *_Only validates if `$PROJECT_ROOT/setup.py` exists_*
 
 Test setup.py version doesn't fall behind git tag.
-
-....
