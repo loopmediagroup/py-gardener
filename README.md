@@ -24,19 +24,7 @@ Please open a github issue.
 
 ## Getting Started
 
-- [Test File](#test-file)
-- [What are the tests?](#what-are-the-tests?)
-  - [Test Incorrect Bool Conditional](#test-incorrect-bool-conditional)
-  - [Test Line Endings](#test-line-endings)
-  - [Test Pylint](#test-pylint)
-  - [Test PEP8](#test-pep8)
-  - [Test Structure](#test-structure)
-    - [Test Class Names Match](#test-class-names-match)
-    - [Test Related Lib File Exists](#test-related-lib-file-exists)
-    - [Test Init Files Exist](#test-init-files-exist)
-  - [Test Version Consistent](#test-version-consistent)
-
-### Test File
+### How to Integrate
 
 
 Create the following file:
@@ -63,9 +51,36 @@ Test asserts don't check 'in (True, False)' (false positives).
 
 Use `isinstance(val, bool)` instead
 
+Incorrect:
+```
+if val in (True, False):
+    ...
+```
+
+Correct:
+```
+if isinstance(val, bool):
+    ...
+```
+
+
 #### Test Line Endings
 
 Test that lines do not end with backslash - use parenthesis instead
+
+Incorrect:
+```
+assert 'key' in values or \
+    condition is True
+```
+
+Correct:
+```
+assert (
+    'key' in values or
+    condition is True
+)
+```
 
 #### Test PEP8
 
@@ -99,13 +114,7 @@ $PROJECT_ROOT
 
 In the above scenario, `file1.py` would be validated against `$PROJECT_ROOT/.pylintrc` whereas `file2.py` & `file3.py` would be validated against `$PROJECT_ROOT/Dir2/.pylintrc`.
 
-Common errors to ignore:
-- C0111 (missing-docstring)
-- C0103 (invalid-name)
-- W0613 (unused-argument)
-- R0901 (too-many-ancestors)
-- R0903 (too-few-public-methods)
-- W0231 (super-init-not-called)
+[PyLint Message Reference](http://pylint-messages.wikidot.com/all-codes)
 
 #### Test Structure
 
@@ -115,7 +124,7 @@ Test that test class names are correct. (Test class name must match file name)
 
 For example:
 
-`TestExample.py`
+`test_Example.py`
 ```python
 import unittest
 class TestExample(unittest.TestCase):
@@ -124,7 +133,11 @@ class TestExample(unittest.TestCase):
 
 ##### Test Related Lib File Exists
 
-Check test files have corresponding lib file if folder exists.
+Check test files have corresponding `$LIB_DIR` file if folder exists.
+
+Example:
+
+`$TEST_DIR/dir/test_Example.py` requires `$LIB_DIR/dir/Example.py` if `$LIB_DIR/dir` exists.
 
 ##### Test Init Files Exist
 
