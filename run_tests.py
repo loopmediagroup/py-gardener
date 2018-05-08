@@ -5,7 +5,7 @@ import pytest
 
 def run_tests():
     args = [
-        '--cov=lib',
+        '--cov=py_gardener',
         '--cov=tests',
         '--cov-report=html',
         '--cov-report=term-missing:skip-covered',
