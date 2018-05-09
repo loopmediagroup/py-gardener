@@ -7,6 +7,7 @@ class InternalTestBase(object):
     ROOT_DIR = None
     TEST_DIR = None
     LIB_DIR = None
+    DOCKER = []
 
     def list_project_files(self, exclude=None):
         """ List python project files """
