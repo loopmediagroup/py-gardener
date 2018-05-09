@@ -8,16 +8,14 @@ class InternalTestBase(object):
     TEST_DIR = None
     LIB_DIR = None
     DOCKER = []
+    EXCLUDE = ["env"]
 
-    def list_project_files(self, exclude=None):
+    def list_project_files(self):
         """ List python project files """
-        if exclude is None:
-            exclude = ["env"]
-
         # compile asterisks to regular expressions
         exclude_regex = []
         for excluded in [path.join(self.ROOT_DIR, excluded) for excluded in
-                         exclude]:
+                         self.EXCLUDE]:
             escaped = re.escape(excluded)
             escaped = escaped.replace(
                 "\\*\\*", ".*")  # pylint: disable=W1401
