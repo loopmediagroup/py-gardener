@@ -41,6 +41,8 @@ Fields:
 
 `DOCKER`: Optional list of Docker containers the project is developed against.
 
+`EXCLUDE`: List of files to be not considered project files for test directory. Defaults to `["env"]`.
+
 ### What are the tests?
 
 #### Test Incorrect Bool Conditional
