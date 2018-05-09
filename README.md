@@ -24,8 +24,129 @@ Please open a github issue.
 
 ## Getting Started
 
-....
+### How to Integrate
 
-## What are the tests?
 
-....
+Create the following file:
+
+`$PROJECT_DIR/tests/static/test_gardener.py`
+
+```python
+import os
+from py_gardener.StaticTestBase import StaticTestBase
+
+
+class TestGardener(StaticTestBase):
+    ROOT_DIR = os.path.join(os.path.dirname(__file__), '..', '..')
+    TEST_DIR = os.path.join(ROOT_DIR, "tests")
+    LIB_DIR = os.path.join(ROOT_DIR, "service_acl_data")
+
+```
+
+### What are the tests?
+
+#### Test Incorrect Bool Conditional
+
+Test asserts don't check `val in (True, False)`. This can result in false positives when `val == 1 or val == 0`.
+
+Use `isinstance(val, bool)` instead
+
+Incorrect:
+
+    >>> 0 in (True, False)
+    True
+    >>> 1 in (True, False)
+    True
+
+Correct:
+
+    >>> isinstance(0, bool)
+    False
+
+
+#### Test Line Endings
+
+Test that lines do not end with backslash - use parenthesis instead
+
+Incorrect:
+```python
+assert 'key' in values or \
+    condition is True
+```
+
+Correct:
+```python
+assert (
+    'key' in values or
+    condition is True
+)
+```
+
+#### Test PEP8
+
+Test that we conform to PEP8.
+
+#### Test Pylint
+
+Test that we conform to Pylint.
+
+Pylint requires a config to adhere to. 
+
+To generate the default config, run:
+
+     $ pylint --generate-rcfile > .pylintrc
+
+To add different configurations for sub-directories, include a separate `.pylintrc` at the root of the subdirectory.
+
+Example: 
+
+```
+$PROJECT_ROOT
+|-- Dir1
+|    |-- file1.py
+|-- Dir2
+|    |-- Dir3
+|    |    |-- file2.py
+|    |-- file3.py
+|    |-- .pylintrc
+|-- .pylintrc
+```
+
+In the above scenario, `file1.py` would be validated against `$PROJECT_ROOT/.pylintrc` whereas `file2.py` & `file3.py` would be validated against `$PROJECT_ROOT/Dir2/.pylintrc`.
+
+[PyLint Message Reference](http://pylint-messages.wikidot.com/all-codes)
+
+#### Test Structure
+
+##### Test Class Names Match
+
+Test that test class names are correct. (Test class name must match file name)
+
+For example:
+
+`test_Example.py`
+```python
+import unittest
+
+
+class TestExample(unittest.TestCase):
+    ...
+```
+
+##### Test Related Lib File Exists
+
+Check test files have corresponding `$LIB_DIR` file if folder exists.
+
+Example:
+
+`$TEST_DIR/dir/test_Example.py` requires `$LIB_DIR/dir/Example.py` if `$LIB_DIR/dir` exists.
+
+##### Test Init Files Exist
+
+Check that all sub folders in $TEST_DIR have an `__init__.py` file.
+
+#### Test Version Consistent
+
+*_Only validates if `$PROJECT_ROOT/setup.py` exists_*
+
+Test setup.py version doesn't fall behind git tag.
