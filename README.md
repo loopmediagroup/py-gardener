@@ -31,6 +31,16 @@ Copy the [example test file](tests/test_StaticTestBase.py) to the following fold
 
 `$PROJECT_DIR/tests/static/test_gardener.py`
 
+Fields:
+
+`ROOT_DIR`: The root path of the project.
+
+`TEST_DIR`: The test path of the project.
+
+`LIB_DIR`: The source code of the project.
+
+`DOCKER`: Optional list of Docker containers the project will be tested inside.
+
 ### What are the tests?
 
 #### Test Incorrect Bool Conditional
