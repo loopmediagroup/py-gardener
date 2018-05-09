@@ -27,7 +27,7 @@ Please open a github issue.
 ### How to Integrate
 
 
-Copy the [example test file](https://github.com/loopmediagroup/py-gardener/blob/master/tests/test_StaticTestBase.py) to the following folder:
+Copy the [example test file](https://github.com/loopmediagroup/py-gardener/blob/master/tests/test_StaticTestBase.py) to the following folder as `TestGardener`:
 
 `$PROJECT_DIR/tests/static/test_gardener.py`
 
