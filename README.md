@@ -142,4 +142,5 @@ Test setup.py version doesn't fall behind git tag.
 #### Test Docker
 
 *_Only validates if `TestGardener.DOCKER` is not an empty list_*
+
 Test that tests are run inside a Docker container.
