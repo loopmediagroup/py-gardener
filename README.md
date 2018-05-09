@@ -39,7 +39,7 @@ Fields:
 
 `LIB_DIR`: The source code of the project.
 
-`DOCKER`: Optional list of Docker containers the project will be tested inside.
+`DOCKER`: Optional list of Docker containers the project is developed against.
 
 ### What are the tests?
 
@@ -151,6 +151,6 @@ Test setup.py version doesn't fall behind git tag.
 
 #### Test Docker
 
-*_Only validates if `TestGardener.DOCKER` is not an empty list_*
+*_Only validates if `DOCKER` (above) is not an empty list_*
 
 Test that tests are run inside a Docker container.
