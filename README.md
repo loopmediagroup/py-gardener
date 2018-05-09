@@ -27,21 +27,9 @@ Please open a github issue.
 ### How to Integrate
 
 
-Create the following file:
+Copy the [example test file](https://github.com/loopmediagroup/py-gardener/blob/master/tests/test_StaticTestBase.py) to the following folder:
 
 `$PROJECT_DIR/tests/static/test_gardener.py`
-
-```python
-import os
-from py_gardener.StaticTestBase import StaticTestBase
-
-
-class TestGardener(StaticTestBase):
-    ROOT_DIR = os.path.join(os.path.dirname(__file__), '..', '..')
-    TEST_DIR = os.path.join(ROOT_DIR, "tests")
-    LIB_DIR = os.path.join(ROOT_DIR, "service_acl_data")
-
-```
 
 ### What are the tests?
 
@@ -150,3 +138,7 @@ Check that all sub folders in $TEST_DIR have an `__init__.py` file.
 *_Only validates if `$PROJECT_ROOT/setup.py` exists_*
 
 Test setup.py version doesn't fall behind git tag.
+
+#### Test Docker
+
+Test that tests are run inside a Docker container.
