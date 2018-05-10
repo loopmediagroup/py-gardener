@@ -17,7 +17,12 @@ class TestDocker(InternalTestBase):
         if self.ROOT_DIR is None:
             return
         for type_ in self.DOCKER:
-            base = os.path.join(os.path.dirname(__file__), "docker", type_)
+            base = os.path.join(
+                os.path.dirname(__file__),
+                "resources",
+                "docker",
+                type_
+            )
             copyfile(
                 os.path.join(base, 'manage.sh'),
                 os.path.join(self.ROOT_DIR, 'manage.sh')
