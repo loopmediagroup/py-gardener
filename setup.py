@@ -7,6 +7,7 @@ Links
 `````
 * `github <https://github.com/loopmediagroup/py-gardener>`_
 """
+import os
 from setuptools import setup
 
 setup(
@@ -20,9 +21,7 @@ setup(
     maintainer_email='lukas.siemon@getintheloop.ca',
     description='Basic Tests for python project to enforce best practices.',
     long_description=__doc__,
-    packages=[
-        'py_gardener'
-    ],
+    packages=[x[0] for x in os.walk("py_gardener")],
     zip_safe=False,
     platforms='any',
     install_requires=[
