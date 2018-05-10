@@ -22,6 +22,7 @@ setup(
     description='Basic Tests for python project to enforce best practices.',
     long_description=__doc__,
     packages=[x[0] for x in os.walk("py_gardener")],
+    include_package_data=True,
     zip_safe=False,
     platforms='any',
     install_requires=[
