@@ -43,6 +43,10 @@ Fields:
 
 `EXCLUDE`: List of files to be not considered project files for test directory. Defaults to `["env"]`.
 
+`OPTIONS`: General options specified below:
+
+* `max-line-length`: Default 80, max line length for pylint and PEP8 rules.
+
 ### What are the tests?
 
 #### Test Incorrect Bool Conditional
