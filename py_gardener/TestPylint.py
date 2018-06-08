@@ -20,10 +20,12 @@ class TestPylint(InternalTestBase):
                 rc_path = os.path.abspath(rc_path + "/..")
             files.append([file_, rc_path])
 
+        line_length = self.OPTIONS.get('max-line-length', 80)
         processes = [pool.apply_async(
-            lambda f: epylint.py_run('%s --rcfile=%s' % (
+            lambda f: epylint.py_run('%s --rcfile=%s --max-line-length=%s' % (
                 f[0],
-                os.path.join(f[1], ".pylintrc")
+                os.path.join(f[1], ".pylintrc"),
+                line_length
             ), return_std=True),
             [[file_path, rc_file_path]]
         ) for file_path, rc_file_path in files]

@@ -9,6 +9,7 @@ class InternalTestBase(object):
     LIB_DIR = None
     DOCKER = []
     EXCLUDE = ["env"]
+    OPTIONS = {}
 
     def list_project_files(self):
         """ List python project files """
