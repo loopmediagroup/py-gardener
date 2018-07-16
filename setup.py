@@ -12,7 +12,7 @@ from setuptools import setup
 
 setup(
     name='py-gardener',
-    version='0.6.3',
+    version='0.6.4',
     url='https://github.com/loopmediagroup/py-gardener',
     license='MIT',
     author='Lukas Siemon',
