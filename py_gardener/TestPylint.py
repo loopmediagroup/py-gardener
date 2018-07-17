@@ -51,11 +51,14 @@ class TestPylint(InternalTestBase):
                     if re.match(r"^\s*$", log):
                         continue
                     result.append(log.strip())
-            if not re.match(
+            if re.match(
                 r"^Using config file [/A-Za-z0-9\-_]+?\.pylintrc\n$",
                 stderr
             ):
-                result.append(stderr)
+                continue
+            if re.match(r"^\s*$", stderr):
+                continue
+            result.append(stderr.strip())
         pool.close()
 
         if len(result) > 0:
