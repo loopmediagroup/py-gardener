@@ -6,6 +6,9 @@ python:
   - "3.6"
   - "3.6-dev"
 
+before_install:
+  - touch /.dockerenv
+
 install:
   - pip install -r requirements.txt
 
