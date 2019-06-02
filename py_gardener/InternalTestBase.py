@@ -3,7 +3,7 @@ import fnmatch
 from os import path, walk
 
 
-class InternalTestBase(object):
+class InternalTestBase():
     ROOT_DIR = None
     TEST_DIR = None
     LIB_DIR = None
