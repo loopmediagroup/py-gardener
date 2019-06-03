@@ -3,16 +3,16 @@
 Py-Gardener
 ----------------
 Enforces best practices in python project.
-Links
-`````
-* `github <https://github.com/loopmediagroup/py-gardener>`_
+
+Links:
+* [github](https://github.com/loopmediagroup/py-gardener)
 """
 import os
 from setuptools import setup
 
 setup(
     name='py-gardener',
-    version='0.6.7',
+    version='0.6.8',
     url='https://github.com/loopmediagroup/py-gardener',
     license='MIT',
     author='Lukas Siemon',
@@ -21,6 +21,7 @@ setup(
     maintainer_email='lukas.siemon@getintheloop.ca',
     description='Basic Tests for python project to enforce best practices.',
     long_description=__doc__,
+    long_description_content_type="text/markdown",
     packages=[x[0] for x in os.walk("py_gardener")],
     include_package_data=True,
     zip_safe=False,
